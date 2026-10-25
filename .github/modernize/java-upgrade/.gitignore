@@ -1,0 +1,10 @@
+target/
+reports/
+screenshots/
+logs/
+
+*.log
+*.class
+
+.idea/
+.vscode/
