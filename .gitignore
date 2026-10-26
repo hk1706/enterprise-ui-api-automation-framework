@@ -22,3 +22,24 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Generated Artifacts
+target/
+reports/
+screenshots/
+logs/
+
+# Logs
+*.log
+*.class
+
+# IDE
+.idea/
+.vscode/
+
+# Personal Documents
+FrameworkLearningDocument.docx
+
+# Temporary Office Files
+~$*
+*.tmp
