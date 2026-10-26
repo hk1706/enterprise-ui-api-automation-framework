@@ -1,8 +1,0 @@
-tests\api\UserApiTest.class
-listeners\TestListener.class
-tests\LoginTest.class
-base\BaseTest.class
-utils\DataProviderUtils.class
-tests\AdminTest.class
-listeners\RetryAnalyzer.class
-listeners\RetryListener.class
