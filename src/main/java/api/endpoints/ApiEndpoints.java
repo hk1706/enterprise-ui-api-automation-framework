@@ -13,4 +13,7 @@ public class ApiEndpoints {
 
         public static final String CREATE_USER =
                 "/api/users";
+        
+        public static final String LOGIN =
+                "/api/login";
 }

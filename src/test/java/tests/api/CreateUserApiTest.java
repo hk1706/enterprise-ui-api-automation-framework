@@ -4,6 +4,7 @@ import api.client.ApiClient;
 import api.endpoints.ApiEndpoints;
 import api.models.CreateUserRequest;
 import api.models.CreateUserResponse;
+import api.utils.ResponseSpecBuilderUtil;
 import base.BaseApiTest;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -30,9 +31,10 @@ public class CreateUserApiTest extends BaseApiTest {
 
         CreateUserResponse userResponse = response.as(CreateUserResponse.class);
         
-        Assert.assertEquals(
-                response.statusCode(),
-                201);
+        response.then()
+        .spec(
+            ResponseSpecBuilderUtil
+                .getSuccessResponseSpec(201));
 
         Assert.assertEquals(
                         userResponse.getName(),

@@ -2,6 +2,8 @@ package tests.api;
 
 import api.client.ApiClient;
 import api.endpoints.ApiEndpoints;
+import api.managers.TokenManager;
+import api.utils.ResponseSpecBuilderUtil;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -13,15 +15,18 @@ public class UserApiTest extends BaseApiTest {
 public void getUsersTest() {
 
     ApiClient apiClient = new ApiClient();
+    //TokenManager.setToken("test123");
 
     Response response =
             apiClient.get(
                     ApiEndpoints.BASE_URL,
                     ApiEndpoints.GET_USERS);
 
-    Assert.assertEquals(
-            response.statusCode(),
-            200);
+    response.then()
+        .spec(
+                ResponseSpecBuilderUtil
+                        .getSuccessResponseSpec(200));
+
 
     Assert.assertEquals(
             response.jsonPath().getInt("page"),
