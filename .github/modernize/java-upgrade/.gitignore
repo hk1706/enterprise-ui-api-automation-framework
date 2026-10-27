@@ -1,20 +1,2 @@
-# Generated Artifacts
-target/
-reports/
-screenshots/
-logs/
 
-# Logs
-*.log
-*.class
-
-# IDE
-.idea/
-.vscode/
-
-# Personal Documents
-FrameworkLearningDocument.docx
-
-# Temporary Office Files
-~$*
-*.tmp
+**/*

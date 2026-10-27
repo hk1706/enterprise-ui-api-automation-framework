@@ -7,58 +7,90 @@ import static io.restassured.RestAssured.given;
 
 public class ApiClient {
 
-    public Response get(String baseUrl,
-                    String endpoint) {
+        public Response get(String baseUrl,
+                String endpoint) {
 
-        return given()
-                .spec(ApiUtils.getRequestSpecification())
-                .log().all()
+                return given()
+                        .spec(ApiUtils.getRequestSpecification())
+                        .log().all()
 
-                .when()
-                .get(baseUrl + endpoint)
+                        .when()
+                        .get(baseUrl + endpoint)
 
-                .then()
-                .log().all()
-                .extract()
-                .response();
+                        .then()
+                        .log().all()
+                        .extract()
+                        .response();
         }
 
-    public Response post(String baseUrl,
+        public Response post(String baseUrl,
                      String endpoint,
                      Object requestBody) {
 
-        return given()
-                .spec(ApiUtils.getRequestSpecification())
-                .body(requestBody)
-                .log().all()
+                return given()
+                        .spec(ApiUtils.getRequestSpecification())
+                        .body(requestBody)
+                        .log().all()
 
-                .when()
-                .post(baseUrl + endpoint)
+                        .when()
+                        .post(baseUrl + endpoint)
 
-                .then()
-                .log().all()
-                .extract()
-                .response();
+                        .then()
+                        .log().all()
+                        .extract()
+                        .response();
         }
 
-    public Response put(String baseUrl,
+        public Response put(String baseUrl,
                     String endpoint,
                     Object requestBody) {
 
-        return given()
-                .spec(ApiUtils.getRequestSpecification())
-                .body(requestBody)
-                .when()
-                .put(baseUrl + endpoint);
-    }
+                return given()
+                        .spec(ApiUtils.getRequestSpecification())
+                        .body(requestBody)
+                        .log().all()
 
-    public Response delete(String baseUrl,
+                        .when()
+                        .put(baseUrl + endpoint)
+
+                        .then()
+                        .log().all()
+                        .extract()
+                        .response();
+        }
+
+        public Response delete(String baseUrl,
                        String endpoint) {
 
-        return given()
-                .spec(ApiUtils.getRequestSpecification())
-                .when()
-                .delete(baseUrl + endpoint);
-}
+                return given()
+                        .spec(ApiUtils.getRequestSpecification())
+                        .log().all()
+
+                        .when()
+                        .delete(baseUrl + endpoint)
+
+                        .then()
+                        .log().all()
+                        .extract()
+                        .response();
+        }
+     
+        public Response patch(String baseUrl,
+                      String endpoint,
+                      Object requestBody) {
+
+                return given()
+                        .spec(ApiUtils.getRequestSpecification())
+                        .body(requestBody)
+                        .log().all()
+
+                        .when()
+                        .patch(baseUrl + endpoint)
+
+                        .then()
+                        .log().all()
+                        .extract()
+                        .response();
+        }
 
 }

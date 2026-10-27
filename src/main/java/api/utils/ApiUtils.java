@@ -1,5 +1,6 @@
 package api.utils;
 
+import api.managers.TokenManager;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 
@@ -7,9 +8,18 @@ public class ApiUtils {
 
     public static RequestSpecification getRequestSpecification() {
 
-        return new RequestSpecBuilder()
-                .setContentType("application/json")
-                .log(io.restassured.filter.log.LogDetail.ALL)
-                .build();
+        RequestSpecBuilder builder =
+                new RequestSpecBuilder()
+                        .setContentType("application/json")
+                        .addHeader("Accept", "application/json");
+
+        if (TokenManager.getToken() != null) {
+
+            builder.addHeader(
+                    "Authorization",
+                    "Bearer " + TokenManager.getToken());
+        }
+
+        return builder.build();
     }
 }

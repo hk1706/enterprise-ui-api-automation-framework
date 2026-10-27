@@ -952,3 +952,405 @@ Phase 10 In Progress ✅
 - Authentication Handling
 - PUT API Automation
 - DELETE API Automation
+
+### Day 11
+
+Date: 26-Oct-2026
+
+#### Completed
+
+##### GitHub Integration
+
+Implemented:
+- GitHub Repository Creation
+- Framework Baseline Commit
+- Feature Branch Workflow
+- feature/api-authentication Branch Creation
+- Repository Cleanup
+- .gitignore Enhancements
+
+##### ResponseSpecification
+
+Implemented:
+- ResponseSpecBuilderUtil
+- Reusable Response Validation
+- Status Code Validation
+- Content Type Validation
+
+Integrated:
+- UserApiTest
+- CreateUserApiTest
+- LoginApiTest
+
+##### Common Headers
+
+Implemented:
+- Accept Header
+- Content-Type Header
+
+Centralized Through:
+- ApiUtils
+- RequestSpecification
+
+##### TokenManager
+
+Created:
+- TokenManager.java
+
+Implemented:
+- Token Storage
+- Token Retrieval
+- Centralized Authentication Handling
+
+Methods:
+- setToken()
+- getToken()
+
+##### Authorization Header Integration
+
+Implemented:
+
+Authorization:
+Bearer <token>
+
+Flow:
+
+TokenManager
+→ RequestSpecification
+→ Authorization Header
+→ API Request
+
+##### Authentication Concepts
+
+Covered:
+- Basic Authentication
+- Bearer Token Authentication
+- JWT
+- OAuth 2.0 (High Level)
+
+##### Authentication API Automation
+
+Created:
+- LoginRequest.java
+- LoginResponse.java
+- LoginApiTest.java
+
+Implemented:
+- Login API Execution
+- Request Serialization
+- Response Deserialization
+- Dynamic Token Extraction
+- TokenManager Integration
+
+##### Dynamic Token Handling
+
+Implemented:
+
+Login API
+→ Extract Token
+→ Store In TokenManager
+→ Reuse Across Framework
+
+#### Learnings
+
+##### ResponseSpecification
+
+Reusable response validation layer for:
+- Status Codes
+- Content Types
+- Common Response Checks
+
+##### Common Headers
+
+Content-Type:
+Defines request payload format.
+
+Accept:
+Defines expected response format.
+
+##### TokenManager
+
+Centralized authentication token handling.
+
+Purpose:
+- Avoid Hardcoded Tokens
+- Improve Reusability
+- Support Framework Scalability
+
+##### Authentication Flow
+
+Login API
+→ Receive Token
+→ Store Token
+→ Reuse Token
+→ Authenticated APIs
+
+##### Dynamic Token Management
+
+Tokens should be generated during execution and should not be hardcoded inside tests.
+
+#### Interview Topics Covered
+
+- ResponseSpecification
+- Common Headers
+- Content-Type vs Accept
+- TokenManager
+- Bearer Token Authentication
+- JWT
+- OAuth 2.0
+- Dynamic Token Handling
+- Login API Automation
+- Authentication Framework Design
+
+#### Verification
+
+Execution Result:
+
+- ResponseSpecification Validation : PASS
+- Common Header Validation : PASS
+- TokenManager Validation : PASS
+- Authorization Header Validation : PASS
+- Login API Automation : PASS
+- Dynamic Token Extraction : PASS
+
+Token Extracted Successfully:
+- QpwL5tke4Pnpja7X4
+
+BUILD SUCCESS
+
+#### Current Status
+
+Phase 10 In Progress ✅
+
+#### Next Task
+
+- PUT API Automation
+- DELETE API Automation
+- PATCH API Automation
+- Authenticated API Flow
+- Framework Enhancements
+
+### Day 12
+
+Date: 27-Oct-2026
+
+#### Completed
+
+##### ApiClient Enhancement
+
+Implemented:
+- PUT Method Logging
+- PATCH Method Support
+- PATCH Method Logging
+- DELETE Method Logging
+- Centralized CRUD Request Handling
+
+##### PUT API Automation
+
+Implemented:
+- PutUserApiTest
+- Request Payload Reuse
+- Status Code Validation
+- ResponseSpecification Integration
+- Business Data Validation
+
+Validated:
+- Status Code = 200
+- Updated Name Validation
+- Updated Job Validation
+- updatedAt Validation
+
+##### PATCH API Automation
+
+Implemented:
+- PatchUserApiTest
+- Partial Update Validation
+- Response Validation
+
+Validated:
+- Status Code = 200
+- Job Update Validation
+- updatedAt Validation
+
+##### DELETE API Automation
+
+Implemented:
+- DeleteUserApiTest
+- Resource Deletion Validation
+
+Validated:
+- Status Code = 204 No Content
+
+##### AuthService
+
+Created:
+- AuthService.java
+
+Implemented:
+- Login API Centralization
+- Token Retrieval Service
+- Token Management Abstraction
+- Authentication Reusability
+
+##### Token Caching
+
+Implemented:
+
+AuthService
+→ TokenManager
+→ Cached Token Reuse
+
+Validation:
+- First Call → Login API Execution
+- Subsequent Calls → Reuse Stored Token
+
+##### Login Framework Refactoring
+
+Refactored:
+- LoginApiTest
+
+Removed:
+- Direct Login Logic Duplication
+
+Delegated To:
+- AuthService
+
+##### API Negative Testing
+
+Implemented:
+
+400 Bad Request Scenario
+- Login Without Password
+
+Validated:
+- Status Code = 400
+- Error Message Validation
+
+401 Unauthorized Scenario
+
+Validated:
+- Invalid Endpoint Request Result
+- API Authentication Failure Handling
+- Unauthorized Response Validation
+
+#### Key Observations
+
+##### PUT vs PATCH
+
+PUT:
+- Complete Resource Update
+
+PATCH:
+- Partial Resource Update
+
+Observation:
+ReqRes demo APIs echo request data instead of persisting updates. Framework implementation and validation were completed successfully, but actual database persistence validation will be covered later using a real CRUD backend.
+
+##### Negative Testing Insight
+
+Expected:
+- Invalid Endpoint → 404
+
+Actual:
+- Invalid Endpoint → 401
+
+Reason:
+Authentication validation occurred before endpoint validation.
+
+Learning:
+Server processing order may impact final response codes.
+
+#### Learnings
+
+##### AuthService
+
+Authentication logic should be placed in a dedicated service layer instead of test classes.
+
+Benefits:
+- Better Reusability
+- Better Maintainability
+- Cleaner Tests
+
+##### Token Caching
+
+Tokens should be generated once and reused across framework execution instead of repeatedly hitting the login API.
+
+##### Negative Testing
+
+Negative scenarios often uncover more defects than positive scenarios.
+
+Common Categories:
+- Missing Fields
+- Invalid Payload
+- Invalid Endpoint
+- Authentication Failures
+- Authorization Failures
+
+##### Framework Design Evolution
+
+API Test
+→ AuthService
+→ ApiClient
+→ RequestSpecification
+→ REST API
+→ ResponseSpecification
+→ POJO Mapping
+→ TokenManager
+
+#### Interview Topics Covered
+
+- PUT API Validation
+- PATCH API Validation
+- DELETE API Validation
+- PUT vs PATCH
+- AuthService Design
+- Token Caching
+- Negative Testing Strategy
+- 400 Bad Request
+- 401 Unauthorized
+- Authentication Service Layer
+- Enterprise API Framework Architecture
+
+#### Verification
+
+Execution Result:
+
+PUT API:
+- PASS
+
+PATCH API:
+- PASS
+
+DELETE API:
+- PASS
+
+AuthService:
+- PASS
+
+Token Caching:
+- PASS
+
+400 Negative Test:
+- PASS
+
+401 Negative Test:
+- PASS
+
+BUILD SUCCESS
+
+#### Current Status
+
+Phase 10 Completed ✅
+
+#### Next Phase
+
+Phase 10A - Real API CRUD Validation
+
+Planned:
+- Local JSON Server Setup
+- Persistent CRUD Operations
+- POST Validation Through GET
+- PUT Validation Through GET
+- DELETE Validation Through GET
+- Actual Resource Persistence Verification
+- Real CRUD Lifecycle Testing
