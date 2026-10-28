@@ -1354,3 +1354,199 @@ Planned:
 - DELETE Validation Through GET
 - Actual Resource Persistence Verification
 - Real CRUD Lifecycle Testing
+
+#### Day 13
+
+Date: 28-Oct-2026
+
+##### Completed
+
+###### JSON Server Setup
+
+Implemented:
+- JSON Server Installation
+- db.json Creation
+- Local API Backend Setup
+- Port 3000 Configuration
+- Persistent CRUD Endpoint Setup
+
+###### Framework Integration
+
+Implemented:
+- baseApiUrl Configuration
+- Local API Endpoint Integration
+- ApiEndpoints Enhancement
+- Local CRUD Test Setup
+
+###### Configuration Debugging
+
+Investigated:
+- ConfigReader Property Resolution
+- config.properties Loading
+- Environment Specific Property Loading
+- ApiUtils Configuration Dependency
+
+Resolved:
+- Property Source Identification
+- Environment Configuration Mapping
+- Framework Configuration Validation
+
+###### Local GET API Validation
+
+Implemented:
+- LocalUserGetApiTest
+- GET All Users Validation
+- Persistent Data Retrieval
+- Response Verification
+
+Validated:
+- Status Code = 200
+- User List Retrieval
+- Local Backend Connectivity
+
+###### Local POST API Automation
+
+Created:
+- LocalUser POJO
+- LocalUserPostApiTest
+
+Implemented:
+- User Creation Request
+- Request Serialization
+- Response Validation
+- Dynamic ID Capture
+
+Validated:
+- Status Code = 201
+- Resource Creation
+- Generated ID Retrieval
+- Persistent Data Storage
+
+###### GET By ID Validation
+
+Created:
+- verifyCreatedUser Test
+
+Implemented:
+- Resource Retrieval By ID
+- Business Data Validation
+- TestNG Assertions
+
+Validated:
+- User Name Validation
+- User Job Validation
+- Persisted Data Verification
+
+##### Issues Faced
+
+###### baseApiUrl Property Resolution Failure
+
+Issue:
+- Missing required property 'baseApiUrl'
+
+Root Cause:
+- ConfigReader.getProperty() loads environment specific properties
+- baseApiUrl was configured in config.properties
+
+Resolution:
+- Analyzed ConfigReader architecture
+- Traced stack flow through ApiUtils and ApiClient
+- Corrected property resolution approach
+
+###### Assertion Import Conflict
+
+Issue:
+- Duplicate Assert imports
+
+Resolution:
+- Removed ExtentReports Assert import
+- Retained TestNG Assert import
+
+##### Learnings
+
+###### Mock API vs Persistent API
+
+Mock API:
+- Contract Validation
+- Response Validation
+
+Persistent API:
+- Actual Data Storage
+- Resource Lifecycle Validation
+- CRUD Persistence Verification
+
+###### Persistence Validation Strategy
+
+POST
+→ Capture ID
+→ GET By ID
+→ Verify Business Data
+
+Business validation is more reliable than validating only POST response data.
+
+###### Configuration Design
+
+Framework Configuration:
+- env
+- executionMode
+
+Environment Configuration:
+- url
+- baseApiUrl
+
+###### Stack Trace Analysis
+
+Framework issues should be debugged by tracing execution flow layer by layer instead of relying only on exception messages.
+
+##### Interview Topics Covered
+
+- JSON Server
+- Persistent CRUD Validation
+- Mock API vs Real API
+- Dynamic ID Capture
+- Persistence Validation
+- POST Validation Strategy
+- GET By ID Validation
+- Resource Lifecycle Testing
+- Configuration Management
+- Stack Trace Debugging
+- Root Cause Analysis
+- Business Assertions
+
+##### Verification
+
+Execution Result:
+
+JSON Server:
+- PASS
+
+GET Users API:
+- PASS
+
+POST User API:
+- PASS
+
+Dynamic ID Capture:
+- PASS
+
+GET User By ID:
+- PASS
+
+Business Assertions:
+- PASS
+
+POST → GET Persistence Validation:
+- PASS
+
+BUILD SUCCESS
+
+##### Current Status
+
+Phase 10A In Progress ✅
+
+##### Next Task
+
+- PUT Validation Through GET
+- DELETE Validation Through GET
+- Complete Resource Lifecycle Validation
+- End-To-End CRUD Workflow
