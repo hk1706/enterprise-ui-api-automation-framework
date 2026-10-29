@@ -1,10 +1,7 @@
 package tests.api;
 
-import io.restassured.response.*;
 import utils.ConfigReader;
-
 import org.testng.annotations.Test;
-
 import api.client.ApiClient;
 import api.endpoints.ApiEndpoints;
 import io.restassured.response.Response;
