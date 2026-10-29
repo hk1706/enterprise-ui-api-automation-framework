@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Himanshu",
+      "job": "QA Engineer"
+    },
+    {
+      "name": "Himanshu Kesharwani",
+      "job": "Automation Engineer",
+      "id": 2
+    },
+    {
+      "name": "Saurabh Kumar Kesharwani",
+      "job": "FullStack Developer",
+      "id": 3
+    },
+    {
+      "name": "Dipali Kesharwani",
+      "job": "Technical Support",
+      "id": 4
+    }
+  ]
+}

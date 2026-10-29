@@ -3,6 +3,7 @@ package api.utils;
 import api.managers.TokenManager;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
+import utils.ConfigReader;
 
 public class ApiUtils {
 
@@ -11,7 +12,8 @@ public class ApiUtils {
         RequestSpecBuilder builder =
                 new RequestSpecBuilder()
                         .setContentType("application/json")
-                        .addHeader("Accept", "application/json");
+                        .addHeader("Accept", "application/json")
+                        .setBaseUri(ConfigReader.getProperty("baseApiUrl"));
 
         if (TokenManager.getToken() != null) {
 

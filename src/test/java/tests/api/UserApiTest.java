@@ -2,7 +2,6 @@ package tests.api;
 
 import api.client.ApiClient;
 import api.endpoints.ApiEndpoints;
-import api.managers.TokenManager;
 import api.utils.ResponseSpecBuilderUtil;
 import io.restassured.response.Response;
 import org.testng.Assert;
