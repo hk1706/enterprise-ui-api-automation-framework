@@ -1550,3 +1550,605 @@ Phase 10A In Progress ✅
 - DELETE Validation Through GET
 - Complete Resource Lifecycle Validation
 - End-To-End CRUD Workflow
+
+##### Day 14
+
+Date: 29-Oct-2026
+
+###### Completed
+
+####### PUT Persistence Validation
+
+Created:
+- LocalUserPutApiTest
+
+Implemented:
+- Resource Update Validation
+- PUT API Execution
+- Follow-up GET Validation
+- Persistence Verification
+
+Validated:
+- Status Code = 200
+- Updated Name Validation
+- Updated Job Validation
+- Persisted Data Verification
+
+####### DELETE Persistence Validation
+
+Created:
+- LocalUserDeleteApiTest
+
+Implemented:
+- Resource Deletion
+- Follow-up GET Validation
+- Resource Removal Verification
+
+Validated:
+- Status Code = 200
+- GET After DELETE = 404
+- Resource Removal Confirmed
+
+####### PATCH Persistence Validation
+
+Created:
+- LocalUserPatchApiTest
+
+Implemented:
+- Partial Resource Update
+- PATCH API Execution
+- Follow-up GET Validation
+- Business Field Verification
+
+Validated:
+- Updated Job Validation
+- Existing Name Preservation
+- Partial Update Persistence
+
+####### Jackson Serialization Enhancement
+
+Implemented:
+- @JsonInclude(JsonInclude.Include.NON_NULL)
+
+Resolved:
+- Null Field Serialization
+- PATCH Payload Pollution
+
+Validation:
+- Null Attributes Excluded From Request Payload
+- Partial Updates Sent Correctly
+
+####### API Chaining
+
+Implemented:
+
+POST
+→ Capture ID
+→ GET By ID
+→ PUT
+→ PATCH
+→ DELETE
+
+Validated:
+- Dynamic Runtime ID Usage
+- Interdependent API Flow
+- Request Chaining Strategy
+
+####### End-To-End Resource Lifecycle Validation
+
+Created:
+- ResourceLifecycleApiTest
+
+Implemented:
+
+POST
+→ GET
+→ PUT
+→ GET
+→ PATCH
+→ GET
+→ DELETE
+→ GET
+
+Validated:
+- Resource Creation
+- Resource Retrieval
+- Resource Update
+- Partial Update
+- Resource Deletion
+- Resource Existence Verification
+- Resource Removal Verification
+
+####### Git Workflow Documentation
+
+Created:
+- GitWorkflow.md
+
+Documented:
+- Branch Strategy
+- Commit Workflow
+- Git Learnings
+- Stash Recovery Learning
+- Phase Tracking
+
+###### Key Observations
+
+####### PUT Creation Behavior
+
+Experiment:
+
+PUT /users/{id}
+
+Observation:
+- Existing Resource → Updated
+- Non Existing Resource → 404 Not Found
+
+Learning:
+PUT resource creation depends on backend implementation.
+
+####### UPSERT Concept
+
+UPSERT:
+
+Update + Insert
+
+Learning:
+Some backends create resources through PUT when the resource does not exist, while others return 404 and allow creation only through POST.
+
+####### Persistence Validation Strategy
+
+POST
+→ GET
+
+PUT
+→ GET
+
+PATCH
+→ GET
+
+DELETE
+→ GET
+
+Follow-up verification provides stronger confidence than validating only immediate API responses.
+
+###### Learnings
+
+####### API Chaining
+
+Output from one API can be used as input to another API.
+
+Example:
+
+POST
+→ Capture ID
+→ GET By ID
+
+####### Resource Lifecycle Validation
+
+A complete CRUD lifecycle should validate:
+
+Create
+→ Read
+→ Update
+→ Patch
+→ Delete
+
+instead of validating individual APIs in isolation.
+
+####### PATCH Validation
+
+PATCH validation should verify:
+
+- Updated Fields Changed
+- Non Updated Fields Preserved
+
+####### JsonInclude
+
+@JsonInclude(Include.NON_NULL)
+
+prevents null attributes from being serialized into request payloads.
+
+####### Backend Driven Behavior
+
+API behavior is determined by backend implementation.
+
+Example:
+PUT may behave as:
+
+- Update Only
+OR
+- UPSERT
+
+depending on backend design.
+
+###### Interview Topics Covered
+
+- API Chaining
+- Resource Lifecycle Validation
+- PUT Persistence Validation
+- PATCH Persistence Validation
+- DELETE Persistence Validation
+- UPSERT Concept
+- PUT vs POST Creation Strategy
+- Dynamic ID Handling
+- JsonInclude NON_NULL
+- Real CRUD Validation
+- Backend Implementation Driven Behavior
+- End-To-End CRUD Workflow
+
+###### Verification
+
+Execution Result:
+
+PUT → GET:
+- PASS
+
+PATCH → GET:
+- PASS
+
+DELETE → GET:
+- PASS
+
+API Chaining:
+- PASS
+
+ResourceLifecycleApiTest:
+- PASS
+
+CRUD Lifecycle Validation:
+- PASS
+
+BUILD SUCCESS
+
+###### Current Status
+
+Phase 10 ✅ Completed
+
+Phase 10A ✅ Completed
+
+###### Next Phase
+
+Phase 11 - Database Validation (JDBC)
+
+Planned:
+
+- JDBC Fundamentals
+- Database Connections
+- SQL Queries
+- SELECT Validation
+- INSERT Validation
+- UPDATE Validation
+- DELETE Validation
+- API ↔ Database Validation
+- UI ↔ Database Validation
+- End-To-End Data Verification
+
+### Day 15
+
+Date: 01-Nov-2026
+
+#### Completed
+
+##### MySQL Setup
+
+Implemented:
+- MySQL Workbench Verification
+- Local MySQL Instance Validation
+- automation_db Database Creation
+- users Table Creation
+- Sample Data Creation
+
+Validated:
+- Database Connectivity
+- Table Accessibility
+- Record Persistence
+
+##### JDBC Integration
+
+Implemented:
+- MySQL JDBC Dependency
+- DatabaseConnection Utility
+- DriverManager Based Connection Handling
+
+Created:
+- DatabaseConnection.java
+- DatabaseConnectionTest.java
+
+Validated:
+- Successful Database Connection
+- MySQL Authentication
+- JDBC Connectivity
+
+##### JDBC Fundamentals
+
+Implemented:
+- Connection
+- Statement
+- ResultSet
+- executeQuery()
+- executeUpdate()
+
+Validated:
+- SQL Execution
+- Database Record Retrieval
+- Query Result Processing
+
+##### SELECT Validation
+
+Created:
+- DatabaseReadTest
+
+Implemented:
+- User Record Retrieval
+- ResultSet Iteration
+- Business Assertions
+
+Validated:
+- Database Read Operations
+- Column Value Retrieval
+- ResultSet Navigation
+
+##### INSERT Validation
+
+Created:
+- DatabaseInsertTest
+
+Implemented:
+- Record Creation
+- Follow-up Record Validation
+
+Validated:
+- executeUpdate()
+- Database Persistence
+- Record Verification
+
+##### UPDATE Validation
+
+Created:
+- DatabaseUpdateTest
+
+Implemented:
+- Record Modification
+- Follow-up Verification
+
+Validated:
+- Updated Data Persistence
+- Business Data Validation
+
+##### DELETE Validation
+
+Created:
+- DatabaseDeleteTest
+
+Implemented:
+- Record Deletion
+- Record Existence Verification
+
+Validated:
+- Data Removal
+- Database Cleanup
+
+##### DatabaseUtils
+
+Created:
+- DatabaseUtils.java
+
+Implemented:
+- executeSelect()
+- executeUpdate()
+
+Purpose:
+- Centralized Query Execution
+- Reusable Database Operations
+
+##### PreparedStatement
+
+Implemented:
+- Parameterized Queries
+- Runtime Value Binding
+- Database Access Layer Enhancement
+
+Validated:
+- Dynamic Query Execution
+- Prepared Query Handling
+
+##### UserDatabaseHelper
+
+Created:
+- UserDatabaseHelper.java
+
+Implemented:
+- isUserPresent()
+- getUserJob()
+- getUserId()
+- getUserByName()
+
+Purpose:
+- Helper Layer Abstraction
+- Business-Oriented Database Access
+
+##### DatabaseUser POJO
+
+Created:
+- DatabaseUser.java
+
+Implemented:
+- id Mapping
+- name Mapping
+- job Mapping
+
+Validated:
+- ResultSet To POJO Mapping
+- Object Based Assertions
+
+##### try-with-resources
+
+Implemented:
+- Automatic Resource Cleanup
+- Connection Management
+- PreparedStatement Cleanup
+- ResultSet Cleanup
+
+Validated:
+- Auto Close Mechanism
+- Resource Leak Prevention
+
+##### Database Validation Framework
+
+Created:
+- DatabaseVerifyUserData.java
+- DatabaseValidateConceptOfJDBC.java
+
+Validated:
+- User Existence Validation
+- User Job Validation
+- POJO Validation
+- Helper Layer Validation
+
+#### Learnings
+
+##### JDBC Architecture
+
+Java Application
+→ JDBC Driver
+→ Database Connection
+→ SQL Query
+→ ResultSet
+→ Assertions
+
+##### executeQuery()
+
+Used For:
+
+- SELECT Operations
+
+Returns:
+
+- ResultSet
+
+##### executeUpdate()
+
+Used For:
+
+- INSERT
+- UPDATE
+- DELETE
+
+Returns:
+
+- Rows Affected
+
+##### Statement vs PreparedStatement
+
+Statement:
+- SQL And Data Combined
+- String Concatenation Based
+
+PreparedStatement:
+- SQL And Data Separate
+- Parameterized Queries
+- Industry Standard
+
+##### ResultSet
+
+Used To:
+
+- Read Query Results
+- Access Database Columns
+- Iterate Database Records
+
+##### POJO Mapping
+
+Database
+→ ResultSet
+→ DatabaseUser POJO
+→ Assertions
+
+##### Database Validation Strategy
+
+INSERT
+→ SELECT
+→ Verify
+
+UPDATE
+→ SELECT
+→ Verify
+
+DELETE
+→ SELECT
+→ Verify
+
+##### try-with-resources
+
+Resources are automatically closed after execution completes.
+
+Benefits:
+- Cleaner Code
+- Resource Leak Prevention
+- Better Maintainability
+
+#### Interview Topics Covered
+
+- JDBC
+- DriverManager
+- Connection
+- Statement
+- PreparedStatement
+- ResultSet
+- executeQuery()
+- executeUpdate()
+- Database CRUD Validation
+- DatabaseUtils
+- UserDatabaseHelper
+- DatabaseUser POJO
+- ResultSet Mapping
+- Statement vs PreparedStatement
+- SQL Injection Prevention
+- try-with-resources
+- Database Validation Framework Design
+
+#### Verification
+
+Execution Result:
+
+Database Connection:
+- PASS
+
+SELECT Validation:
+- PASS
+
+INSERT Validation:
+- PASS
+
+UPDATE Validation:
+- PASS
+
+DELETE Validation:
+- PASS
+
+PreparedStatement Validation:
+- PASS
+
+Database Helper Validation:
+- PASS
+
+POJO Mapping Validation:
+- PASS
+
+BUILD SUCCESS
+
+#### Current Status
+
+Phase 11A - JDBC Fundamentals ✅ Completed
+
+#### Next Phase
+
+Phase 11B - Database Validation Patterns
+
+Planned:
+
+- Database Validation Strategies
+- API ↔ Database Validation Concepts
+- UI ↔ Database Validation Concepts
+- End-To-End Data Verification Patterns
+- Enterprise Database Testing Scenarios
